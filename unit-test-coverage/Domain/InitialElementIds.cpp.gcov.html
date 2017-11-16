@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 270fd52d4526cb096cc9683cc2fc34a30d9efd0f - Domain/InitialElementIds.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - InitialElementIds.cpp<span style="font-size: 80%;"> (source / <a href="InitialElementIds.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/270fd52d4526cb096cc9683cc2fc34a30d9efd0f">270fd52d4526cb096cc9683cc2fc34a30d9efd0f</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">31</td>
+            <td class="headerCovTableEntry">31</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-11-16 05:33:43</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/InitialElementIds.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &quot;Domain/ElementId.hpp&quot;
+<span class="lineNum">       7 </span>            : #include &quot;Domain/SegmentId.hpp&quot;
+<span class="lineNum">       8 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/MakeArray.hpp&quot;
+<a name="10"><span class="lineNum">      10 </span>            : </a>
+<span class="lineNum">      11 </span>            : template &lt;&gt;
+<span class="lineNum">      12 </span><span class="lineCov">          1 : std::vector&lt;ElementId&lt;1&gt;&gt; initial_element_ids(</span>
+<span class="lineNum">      13 </span>            :     const std::vector&lt;std::array&lt;size_t, 1&gt;&gt;&amp;
+<span class="lineNum">      14 </span>            :         initial_refinement_levels) noexcept {
+<span class="lineNum">      15 </span><span class="lineCov">          1 :   std::vector&lt;ElementId&lt;1&gt;&gt; element_ids;</span>
+<span class="lineNum">      16 </span><span class="lineCov">          3 :   for (size_t block_id = 0; block_id &lt; initial_refinement_levels.size();</span>
+<span class="lineNum">      17 </span>            :        ++block_id) {
+<span class="lineNum">      18 </span><span class="lineCov">          2 :     const size_t xi_refinement_level = initial_refinement_levels[block_id][0];</span>
+<span class="lineNum">      19 </span><span class="lineCov">         28 :     for (size_t xi_index = 0; xi_index &lt; two_to_the(xi_refinement_level);</span>
+<span class="lineNum">      20 </span>            :          ++xi_index) {
+<span class="lineNum">      21 </span>            :       element_ids.emplace_back(
+<span class="lineNum">      22 </span><span class="lineCov">         24 :           block_id, make_array&lt;1&gt;(SegmentId(xi_refinement_level, xi_index)));</span>
+<span class="lineNum">      23 </span>            :     }
+<span class="lineNum">      24 </span>            :   }
+<span class="lineNum">      25 </span><span class="lineCov">          1 :   return element_ids;</span>
+<span class="lineNum">      26 </span>            : }
+<a name="27"><span class="lineNum">      27 </span>            : </a>
+<span class="lineNum">      28 </span>            : template &lt;&gt;
+<span class="lineNum">      29 </span><span class="lineCov">          1 : std::vector&lt;ElementId&lt;2&gt;&gt; initial_element_ids(</span>
+<span class="lineNum">      30 </span>            :     const std::vector&lt;std::array&lt;size_t, 2&gt;&gt;&amp;
+<span class="lineNum">      31 </span>            :         initial_refinement_levels) noexcept {
+<span class="lineNum">      32 </span><span class="lineCov">          1 :   std::vector&lt;ElementId&lt;2&gt;&gt; element_ids;</span>
+<span class="lineNum">      33 </span><span class="lineCov">          3 :   for (size_t block_id = 0; block_id &lt; initial_refinement_levels.size();</span>
+<span class="lineNum">      34 </span>            :        ++block_id) {
+<span class="lineNum">      35 </span><span class="lineCov">          2 :     const size_t xi_refinement_level = initial_refinement_levels[block_id][0];</span>
+<span class="lineNum">      36 </span><span class="lineCov">         28 :     for (size_t xi_index = 0; xi_index &lt; two_to_the(xi_refinement_level);</span>
+<span class="lineNum">      37 </span>            :          ++xi_index) {
+<span class="lineNum">      38 </span>            :       const size_t eta_refinement_level =
+<span class="lineNum">      39 </span><span class="lineCov">         12 :           initial_refinement_levels[block_id][1];</span>
+<span class="lineNum">      40 </span><span class="lineCov">         64 :       for (size_t eta_index = 0; eta_index &lt; two_to_the(eta_refinement_level);</span>
+<span class="lineNum">      41 </span>            :            ++eta_index) {
+<span class="lineNum">      42 </span>            :         element_ids.emplace_back(
+<span class="lineNum">      43 </span><span class="lineCov">         40 :             block_id, make_array(SegmentId(xi_refinement_level, xi_index),</span>
+<span class="lineNum">      44 </span><span class="lineCov">         60 :                                  SegmentId(eta_refinement_level, eta_index)));</span>
+<span class="lineNum">      45 </span>            :       }
+<span class="lineNum">      46 </span>            :     }
+<span class="lineNum">      47 </span>            :   }
+<span class="lineNum">      48 </span><span class="lineCov">          1 :   return element_ids;</span>
+<span class="lineNum">      49 </span>            : }
+<a name="50"><span class="lineNum">      50 </span>            : </a>
+<span class="lineNum">      51 </span>            : template &lt;&gt;
+<span class="lineNum">      52 </span><span class="lineCov">          1 : std::vector&lt;ElementId&lt;3&gt;&gt; initial_element_ids(</span>
+<span class="lineNum">      53 </span>            :     const std::vector&lt;std::array&lt;size_t, 3&gt;&gt;&amp;
+<span class="lineNum">      54 </span>            :         initial_refinement_levels) noexcept {
+<span class="lineNum">      55 </span><span class="lineCov">          1 :   std::vector&lt;ElementId&lt;3&gt;&gt; element_ids;</span>
+<span class="lineNum">      56 </span><span class="lineCov">          3 :   for (size_t block_id = 0; block_id &lt; initial_refinement_levels.size();</span>
+<span class="lineNum">      57 </span>            :        ++block_id) {
+<span class="lineNum">      58 </span><span class="lineCov">          2 :     const size_t xi_refinement_level = initial_refinement_levels[block_id][0];</span>
+<span class="lineNum">      59 </span><span class="lineCov">         38 :     for (size_t xi_index = 0; xi_index &lt; two_to_the(xi_refinement_level);</span>
+<span class="lineNum">      60 </span>            :          ++xi_index) {
+<span class="lineNum">      61 </span>            :       const size_t eta_refinement_level =
+<span class="lineNum">      62 </span><span class="lineCov">         17 :           initial_refinement_levels[block_id][1];</span>
+<span class="lineNum">      63 </span><span class="lineCov">        178 :       for (size_t eta_index = 0; eta_index &lt; two_to_the(eta_refinement_level);</span>
+<span class="lineNum">      64 </span>            :            ++eta_index) {
+<span class="lineNum">      65 </span>            :         const size_t zeta_refinement_level =
+<span class="lineNum">      66 </span><span class="lineCov">         72 :             initial_refinement_levels[block_id][2];</span>
+<span class="lineNum">      67 </span><span class="lineCov">        464 :         for (size_t zeta_index = 0;</span>
+<span class="lineNum">      68 </span><span class="lineCov">        232 :              zeta_index &lt; two_to_the(zeta_refinement_level); ++zeta_index) {</span>
+<span class="lineNum">      69 </span>            :           element_ids.emplace_back(
+<span class="lineNum">      70 </span>            :               block_id,
+<span class="lineNum">      71 </span><span class="lineCov">        320 :               make_array(SegmentId(xi_refinement_level, xi_index),</span>
+<span class="lineNum">      72 </span><span class="lineCov">        320 :                          SegmentId(eta_refinement_level, eta_index),</span>
+<span class="lineNum">      73 </span><span class="lineCov">        480 :                          SegmentId(zeta_refinement_level, zeta_index)));</span>
+<span class="lineNum">      74 </span>            :         }
+<span class="lineNum">      75 </span>            :       }
+<span class="lineNum">      76 </span>            :     }
+<span class="lineNum">      77 </span>            :   }
+<span class="lineNum">      78 </span><span class="lineCov">          1 :   return element_ids;</span>
+<span class="lineNum">      79 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

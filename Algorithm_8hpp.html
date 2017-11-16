@@ -1,0 +1,390 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Parallel/Algorithm.hpp File Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_49769315ed9027922fd28b153b0fcb63.html">Parallel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Algorithm.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="DataBox_8hpp_source.html">DataStructures/DataBox.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Error_8hpp_source.html">ErrorHandling/Error.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ArrayIndex_8hpp_source.html">Parallel/ArrayIndex.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ParallelComponentHelpers_8hpp_source.html">Parallel/ParallelComponentHelpers.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Parallel_2TypeTraits_8hpp_source.html">Parallel/TypeTraits.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="BoostHelpers_8hpp_source.html">Utilities/BoostHelpers.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ConstantExpressions_8hpp_source.html">Utilities/ConstantExpressions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Gsl_8hpp_source.html">Utilities/Gsl.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="NoSuchType_8hpp_source.html">Utilities/NoSuchType.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Overloader_8hpp_source.html">Utilities/Overloader.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="PrettyType_8hpp_source.html">Utilities/PrettyType.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TMPL_8hpp_source.html">Utilities/TMPL.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TaggedTuple_8hpp_source.html">Utilities/TaggedTuple.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utilities_2TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
+</div>
+<p><a href="Algorithm_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classis__apply__callable.html">is_apply_callable&lt; TT, TArgs &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAlgorithmImpl_3_01ParallelComponent_00_01ChareType_00_01Metavariables_00_01tmpl_1_1list_3_05216f3256a498cdc6e28f87f21b55216.html">AlgorithmImpl&lt; ParallelComponent, ChareType, Metavariables, tmpl::list&lt; ActionsPack... &gt;, tmpl::list&lt; InboxTagsPack... &gt;, ArrayIndex, InitialDataBox &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A distributed object (Charm++ Chare) that executes a series of <a class="el" href="namespaceActions.html">Actions</a> and is capable of sending and receiving data. Acts as an interface to Charm++.  <a href="classAlgorithmImpl_3_01ParallelComponent_00_01ChareType_00_01Metavariables_00_01tmpl_1_1list_3_05216f3256a498cdc6e28f87f21b55216.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceParallel"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceParallel.html">Parallel</a></td></tr>
+<tr class="memdesc:namespaceParallel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains functions that forward to Charm++ parallel functions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aa818bfd01f755b6e721a2c1f0aa075bf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#aa818bfd01f755b6e721a2c1f0aa075bf">Parallel::type</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>&lt; bool, value &gt;</td></tr>
+<tr class="separator:aa818bfd01f755b6e721a2c1f0aa075bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef04d525a903ba75573f7a66fcfdbd53"><td class="memTemplParams" colspan="2">template&lt;typename TT , typename... TArgs&gt; </td></tr>
+<tr class="memitem:aef04d525a903ba75573f7a66fcfdbd53"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Algorithm_8hpp.html#aef04d525a903ba75573f7a66fcfdbd53">has_is_ready_t</a> = typename has_is_ready&lt; TT, TArgs... &gt;::type</td></tr>
+<tr class="separator:aef04d525a903ba75573f7a66fcfdbd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gad0397ccb72cb4205f5dc83d6f60d47d0">Parallel::lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock a converse CmiNodeLock.  <a href="group__Parallel.html#gad0397ccb72cb4205f5dc83d6f60d47d0">More...</a><br /></td></tr>
+<tr class="separator:gad0397ccb72cb4205f5dc83d6f60d47d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga8b5b8d712c472935e5c817e9ed723c25">Parallel::try_lock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga8b5b8d712c472935e5c817e9ed723c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the lock was successfully acquired and false if the lock is already acquired by another processor.  <a href="group__Parallel.html#ga8b5b8d712c472935e5c817e9ed723c25">More...</a><br /></td></tr>
+<tr class="separator:ga8b5b8d712c472935e5c817e9ed723c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26e5eb4933e796cd454b67ac773836f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga26e5eb4933e796cd454b67ac773836f9">Parallel::unlock</a> (const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; CmiNodeLock *&gt; node_lock) noexcept</td></tr>
+<tr class="memdesc:ga26e5eb4933e796cd454b67ac773836f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock a converse CmiNodeLock.  <a href="group__Parallel.html#ga26e5eb4933e796cd454b67ac773836f9">More...</a><br /></td></tr>
+<tr class="separator:ga26e5eb4933e796cd454b67ac773836f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7d5232dff97513f915e78952f7ebb70"><td class="memTemplParams" colspan="2">template&lt;typename Invokable , typename ThisVariant , typename... Variants, typename... Args, Requires&lt; is_apply_callable&lt; Invokable, std::add_lvalue_reference_t&lt; ThisVariant &gt;, Args &amp;&amp;... &gt;::value &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:af7d5232dff97513f915e78952f7ebb70"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Algorithm_8hpp.html#af7d5232dff97513f915e78952f7ebb70">apply_visitor_helper</a> (boost::variant&lt; Variants... &gt; &amp;box, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt; iter, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; bool *&gt; already_visited, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:af7d5232dff97513f915e78952f7ebb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8571303e339579ea005a503f6c13d5e5"><td class="memTemplParams" colspan="2">template&lt;typename Invokable , typename ThisVariant , typename... Variants, typename... Args, Requires&lt; not is_apply_callable&lt; Invokable, std::add_lvalue_reference_t&lt; ThisVariant &gt;, Args &amp;&amp;... &gt;::value &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a8571303e339579ea005a503f6c13d5e5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Algorithm_8hpp.html#a8571303e339579ea005a503f6c13d5e5">apply_visitor_helper</a> (boost::variant&lt; Variants... &gt; &amp;box, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt; iter, const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; bool *&gt; already_visited, Args &amp;&amp;...)</td></tr>
+<tr class="separator:a8571303e339579ea005a503f6c13d5e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0057df9828cd18c9da1d3d8e9226601"><td class="memTemplParams" colspan="2">template&lt;typename Invokable , typename... Variants, typename... Args&gt; </td></tr>
+<tr class="memitem:aa0057df9828cd18c9da1d3d8e9226601"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Algorithm_8hpp.html#aa0057df9828cd18c9da1d3d8e9226601">apply_visitor</a> (boost::variant&lt; Variants... &gt; &amp;box, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:aa0057df9828cd18c9da1d3d8e9226601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls an <code>Invokable</code>'s <code>apply</code> static member function with the current type in the <code>boost::variant</code>.  <a href="#aa0057df9828cd18c9da1d3d8e9226601">More...</a><br /></td></tr>
+<tr class="separator:aa0057df9828cd18c9da1d3d8e9226601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:abe10bb124676f152e29c58c007b3b735"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceParallel.html#abe10bb124676f152e29c58c007b3b735">Parallel::value</a> = decltype(test_callable&lt;TT, TArgs...&gt;(0))::value</td></tr>
+<tr class="separator:abe10bb124676f152e29c58c007b3b735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="aef04d525a903ba75573f7a66fcfdbd53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef04d525a903ba75573f7a66fcfdbd53">&#9670;&nbsp;</a></span>has_is_ready_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TT , typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="Algorithm_8hpp.html#aef04d525a903ba75573f7a66fcfdbd53">has_is_ready_t</a> =  typename has_is_ready&lt;TT, TArgs...&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa0057df9828cd18c9da1d3d8e9226601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0057df9828cd18c9da1d3d8e9226601">&#9670;&nbsp;</a></span>apply_visitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Invokable , typename... Variants, typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void apply_visitor </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; Variants... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls an <code>Invokable</code>'s <code>apply</code> static member function with the current type in the <code>boost::variant</code>. </p>
+<p>The primary use case for this is to allow executing a single Action at any point in the Algorithm. The current best-known use case for this is setting up initial data. However, the implementation is generic enough to handle a call at any time that is valid. Here valid is defined as the <code>apply</code> function only accesses members of the DataBox that are guaranteed to be present when it is invoked, and returns a DataBox of a type that does not break the Algorithm. </p>
+
+</div>
+</div>
+<a id="af7d5232dff97513f915e78952f7ebb70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7d5232dff97513f915e78952f7ebb70">&#9670;&nbsp;</a></span>apply_visitor_helper() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Invokable , typename ThisVariant , typename... Variants, typename... Args, Requires&lt; is_apply_callable&lt; Invokable, std::add_lvalue_reference_t&lt; ThisVariant &gt;, Args &amp;&amp;... &gt;::value &gt;  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void apply_visitor_helper </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; Variants... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;&#160;</td>
+          <td class="paramname"><em>iter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; bool *&gt;&#160;</td>
+          <td class="paramname"><em>already_visited</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__DataBoxGroup.html#ga18ab344b7599c78f3866fd2d2bb4687c">db::apply()</a>, <a class="el" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>, <a class="el" href="group__Utilities.html#gad87825ee8984324e81a2ae6ab2fec6ed">make_overloader()</a>, and <a class="el" href="namespaceParallel.html#abe10bb124676f152e29c58c007b3b735">Parallel::value</a>.</p>
+
+</div>
+</div>
+<a id="a8571303e339579ea005a503f6c13d5e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8571303e339579ea005a503f6c13d5e5">&#9670;&nbsp;</a></span>apply_visitor_helper() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Invokable , typename ThisVariant , typename... Variants, typename... Args, Requires&lt; not is_apply_callable&lt; Invokable, std::add_lvalue_reference_t&lt; ThisVariant &gt;, Args &amp;&amp;... &gt;::value &gt;  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void apply_visitor_helper </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; Variants... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; int *&gt;&#160;</td>
+          <td class="paramname"><em>iter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classgsl_1_1not__null.html">gsl::not_null</a>&lt; bool *&gt;&#160;</td>
+          <td class="paramname"><em>already_visited</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>, and <a class="el" href="group__PrettyType.html#gac0b1e9dbf00ffc945748145a597379d9">pretty_type::get_name()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

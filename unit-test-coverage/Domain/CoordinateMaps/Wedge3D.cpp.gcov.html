@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 270fd52d4526cb096cc9683cc2fc34a30d9efd0f - Domain/CoordinateMaps/Wedge3D.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/CoordinateMaps</a> - Wedge3D.cpp<span style="font-size: 80%;"> (source / <a href="Wedge3D.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/270fd52d4526cb096cc9683cc2fc34a30d9efd0f">270fd52d4526cb096cc9683cc2fc34a30d9efd0f</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">165</td>
+            <td class="headerCovTableEntry">166</td>
+            <td class="headerCovTableEntryHi">99.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-11-16 05:33:43</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/CoordinateMaps/Wedge3D.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &quot;DataStructures/MakeWithValue.hpp&quot;
+<span class="lineNum">       7 </span>            : #include &quot;DataStructures/Tensor/EagerMath/DeterminantAndInverse.hpp&quot;
+<span class="lineNum">       8 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      11 </span>            : 
+<a name="12"><span class="lineNum">      12 </span>            : namespace CoordinateMaps {</a>
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span><span class="lineCov">         25 : Wedge3D::Wedge3D(const double radius_of_other_surface,</span>
+<span class="lineNum">      15 </span>            :                  const double radius_of_spherical_surface,
+<span class="lineNum">      16 </span>            :                  const Direction&lt;3&gt; direction_of_wedge,
+<span class="lineNum">      17 </span><span class="lineCov">         25 :                  const double sphericity_of_other_surface) noexcept</span>
+<span class="lineNum">      18 </span>            :     : radius_of_other_surface_(radius_of_other_surface),
+<span class="lineNum">      19 </span>            :       radius_of_spherical_surface_(radius_of_spherical_surface),
+<span class="lineNum">      20 </span>            :       direction_of_wedge_(direction_of_wedge),
+<span class="lineNum">      21 </span><span class="lineCov">         25 :       sphericity_of_other_surface_(sphericity_of_other_surface) {</span>
+<span class="lineNum">      22 </span><span class="lineCov">         25 :   ASSERT(radius_of_other_surface &gt; 0,</span>
+<span class="lineNum">      23 </span>            :          &quot;The radius of the other surface must be greater than zero.&quot;);
+<span class="lineNum">      24 </span><span class="lineCov">         25 :   ASSERT(radius_of_spherical_surface &gt; 0,</span>
+<span class="lineNum">      25 </span>            :          &quot;The radius of the spherical surface must be greater than zero.&quot;);
+<span class="lineNum">      26 </span><span class="lineCov">         25 :   ASSERT(sphericity_of_other_surface &gt;= 0 and sphericity_of_other_surface &lt;= 1,</span>
+<span class="lineNum">      27 </span>            :          &quot;Sphericity of other surface must be between 0 and 1&quot;);
+<span class="lineNum">      28 </span><span class="lineCov">         25 :   ASSERT(radius_of_other_surface &lt; radius_of_spherical_surface or</span>
+<span class="lineNum">      29 </span>            :              (1 + sphericity_of_other_surface * (sqrt(3.) - 1.)) *
+<span class="lineNum">      30 </span>            :                      radius_of_other_surface &gt;
+<span class="lineNum">      31 </span>            :                  sqrt(3.) * radius_of_spherical_surface,
+<span class="lineNum">      32 </span>            :          &quot;For the value of the given radii and sphericity, the spherical &quot;
+<span class="lineNum">      33 </span>            :          &quot;surface intersects with the other surface&quot;);
+<span class="lineNum">      34 </span><span class="lineCov">         25 : }</span>
+<a name="35"><span class="lineNum">      35 </span>            : </a>
+<span class="lineNum">      36 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      37 </span><span class="lineCov">        338 : std::array&lt;std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;, 3&gt; Wedge3D::</span>
+<span class="lineNum">      38 </span>            : operator()(const std::array&lt;T, 3&gt;&amp; x) const noexcept {
+<span class="lineNum">      39 </span>            :   using ReturnType = std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;;
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span><span class="lineCov">        338 :   const ReturnType&amp; xi = x[0];</span>
+<span class="lineNum">      42 </span><span class="lineCov">        338 :   const ReturnType&amp; eta = x[1];</span>
+<span class="lineNum">      43 </span><span class="lineCov">        338 :   const ReturnType&amp; zeta = x[2];</span>
+<span class="lineNum">      44 </span><span class="lineCov">        342 :   ReturnType x_inner_cubical_face = xi * radius_of_other_surface_ / sqrt(3.0);</span>
+<span class="lineNum">      45 </span><span class="lineCov">        342 :   ReturnType y_inner_cubical_face = eta * radius_of_other_surface_ / sqrt(3.0);</span>
+<span class="lineNum">      46 </span>            :   // clang-tidy: use auto - This use would be OK, but there used to be
+<span class="lineNum">      47 </span>            :   // major bugs in this function due to use of auto rather than
+<span class="lineNum">      48 </span>            :   // ReturnType, so I'd prefer to avoid auto completely here.
+<span class="lineNum">      49 </span>            :   ReturnType z_inner_cubical_face =  // NOLINT
+<span class="lineNum">      50 </span><span class="lineCov">        676 :       make_with_value&lt;ReturnType&gt;(xi, radius_of_other_surface_ / sqrt(3.0));</span>
+<span class="lineNum">      51 </span><span class="lineCov">        342 :   const ReturnType x_unit_spherical_face = tan(M_PI_4 * xi);</span>
+<span class="lineNum">      52 </span><span class="lineCov">        342 :   const ReturnType y_unit_spherical_face = tan(M_PI_4 * eta);</span>
+<span class="lineNum">      53 </span>            :   const ReturnType z_spherical_faces_common_factor =
+<span class="lineNum">      54 </span><span class="lineCov">        338 :       make_with_value&lt;ReturnType&gt;(xi, 1.) /</span>
+<span class="lineNum">      55 </span><span class="lineCov">        682 :       sqrt(1.0 + square(x_unit_spherical_face) + square(y_unit_spherical_face));</span>
+<span class="lineNum">      56 </span>            :   const ReturnType z_inner_spherical_face =
+<span class="lineNum">      57 </span><span class="lineCov">        342 :       radius_of_other_surface_ * z_spherical_faces_common_factor;</span>
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            :   // If sphericity_of_other_surface_==0, the inner_cubical_face variables
+<span class="lineNum">      60 </span>            :   // correspond to the
+<span class="lineNum">      61 </span>            :   // face of a cube.
+<span class="lineNum">      62 </span>            :   // If sphericity_of_other_surface_!=0, the inner_cubical_face variables have
+<span class="lineNum">      63 </span>            :   // the
+<span class="lineNum">      64 </span>            :   // spherical_face portions added to them to create a rounded-out cube face.
+<span class="lineNum">      65 </span>            :   // At sphericity_of_other_surface_==1, the face becomes spherical.
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span><span class="lineCov">        338 :   x_inner_cubical_face +=</span>
+<span class="lineNum">      68 </span><span class="lineCov">        676 :       sphericity_of_other_surface_ *</span>
+<span class="lineNum">      69 </span><span class="lineCov">        340 :       (z_inner_spherical_face * x_unit_spherical_face - x_inner_cubical_face);</span>
+<span class="lineNum">      70 </span><span class="lineCov">        338 :   y_inner_cubical_face +=</span>
+<span class="lineNum">      71 </span><span class="lineCov">        676 :       sphericity_of_other_surface_ *</span>
+<span class="lineNum">      72 </span><span class="lineCov">        340 :       (z_inner_spherical_face * y_unit_spherical_face - y_inner_cubical_face);</span>
+<span class="lineNum">      73 </span><span class="lineCov">        674 :   z_inner_cubical_face += sphericity_of_other_surface_ *</span>
+<span class="lineNum">      74 </span><span class="lineCov">        340 :                           (z_inner_spherical_face - z_inner_cubical_face);</span>
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            :   const ReturnType z_outer_spherical_face =
+<span class="lineNum">      77 </span><span class="lineCov">        342 :       radius_of_spherical_surface_ * z_spherical_faces_common_factor;</span>
+<span class="lineNum">      78 </span>            :   const ReturnType x_outer_spherical_face =
+<span class="lineNum">      79 </span><span class="lineCov">        340 :       z_outer_spherical_face * x_unit_spherical_face;</span>
+<span class="lineNum">      80 </span>            :   const ReturnType y_outer_spherical_face =
+<span class="lineNum">      81 </span><span class="lineCov">        340 :       z_outer_spherical_face * y_unit_spherical_face;</span>
+<span class="lineNum">      82 </span>            :   const ReturnType physical_x =
+<span class="lineNum">      83 </span><span class="lineCov">        338 :       x_inner_cubical_face +</span>
+<span class="lineNum">      84 </span><span class="lineCov">        684 :       (x_outer_spherical_face - x_inner_cubical_face) * (zeta + 1) * 0.5;</span>
+<span class="lineNum">      85 </span>            :   const ReturnType physical_y =
+<span class="lineNum">      86 </span><span class="lineCov">        338 :       y_inner_cubical_face +</span>
+<span class="lineNum">      87 </span><span class="lineCov">        684 :       (y_outer_spherical_face - y_inner_cubical_face) * (zeta + 1) * 0.5;</span>
+<span class="lineNum">      88 </span>            :   const ReturnType physical_z =
+<span class="lineNum">      89 </span><span class="lineCov">        338 :       z_inner_cubical_face +</span>
+<span class="lineNum">      90 </span><span class="lineCov">        684 :       (z_outer_spherical_face - z_inner_cubical_face) * (zeta + 1) * 0.5;</span>
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            :   // Assigns location of wedge based on passed &quot;direction_of_wedge&quot;
+<span class="lineNum">      93 </span>            :   // Wedges on z axis:
+<span class="lineNum">      94 </span><span class="lineCov">        338 :   if (direction_of_wedge_.axis() == Direction&lt;3&gt;::Axis::Zeta) {</span>
+<span class="lineNum">      95 </span><span class="lineCov">        158 :     return (direction_of_wedge_.side() == Side::Upper)</span>
+<span class="lineNum">      96 </span><span class="lineCov">        114 :                ? std::array&lt;ReturnType, 3&gt;{{std::move(physical_x),</span>
+<span class="lineNum">      97 </span><span class="lineCov">        114 :                                             std::move(physical_y),</span>
+<span class="lineNum">      98 </span><span class="lineCov">        114 :                                             std::move(physical_z)}}</span>
+<span class="lineNum">      99 </span><span class="lineCov">         44 :                : std::array&lt;ReturnType, 3&gt;{{std::move(physical_x),</span>
+<span class="lineNum">     100 </span><span class="lineCov">        290 :                                             std::move(-physical_y),</span>
+<span class="lineNum">     101 </span><span class="lineCov">        746 :                                             std::move(-physical_z)}};</span>
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            :   // Wedges on y axis:
+<span class="lineNum">     104 </span><span class="lineCov">        180 :   if (direction_of_wedge_.axis() == Direction&lt;3&gt;::Axis::Eta) {</span>
+<span class="lineNum">     105 </span><span class="lineCov">         90 :     return (direction_of_wedge_.side() == Side::Upper)</span>
+<span class="lineNum">     106 </span><span class="lineCov">         45 :                ? std::array&lt;ReturnType, 3&gt;{{std::move(physical_y),</span>
+<span class="lineNum">     107 </span><span class="lineCov">         45 :                                             std::move(physical_z),</span>
+<span class="lineNum">     108 </span><span class="lineCov">         45 :                                             std::move(physical_x)}}</span>
+<span class="lineNum">     109 </span><span class="lineCov">         45 :                : std::array&lt;ReturnType, 3&gt;{{std::move(physical_y),</span>
+<span class="lineNum">     110 </span><span class="lineCov">        225 :                                             std::move(-physical_z),</span>
+<span class="lineNum">     111 </span><span class="lineCov">        405 :                                             std::move(-physical_x)}};</span>
+<span class="lineNum">     112 </span>            :   }
+<span class="lineNum">     113 </span>            :   // Wedges on x axis:
+<span class="lineNum">     114 </span><span class="lineCov">         90 :   if (direction_of_wedge_.axis() == Direction&lt;3&gt;::Axis::Xi) {</span>
+<span class="lineNum">     115 </span><span class="lineCov">         90 :     return (direction_of_wedge_.side() == Side::Upper)</span>
+<span class="lineNum">     116 </span><span class="lineCov">         45 :                ? std::array&lt;ReturnType, 3&gt;{{std::move(physical_z),</span>
+<span class="lineNum">     117 </span><span class="lineCov">         45 :                                             std::move(physical_x),</span>
+<span class="lineNum">     118 </span><span class="lineCov">         45 :                                             std::move(physical_y)}}</span>
+<span class="lineNum">     119 </span><span class="lineCov">        225 :                : std::array&lt;ReturnType, 3&gt;{{std::move(-physical_z),</span>
+<span class="lineNum">     120 </span><span class="lineCov">        180 :                                             std::move(-physical_x),</span>
+<span class="lineNum">     121 </span><span class="lineCov">        450 :                                             std::move(physical_y)}};</span>
+<span class="lineNum">     122 </span>            :   }
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :   ERROR(&quot;Improper axis passed to function.&quot;);</span>
+<span class="lineNum">     124 </span>            : }
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            : // LCOV_EXCL_START
+<span class="lineNum">     127 </span>            : // Currently unimplemented, hence the noreturn attribute
+<span class="lineNum">     128 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     129 </span>            : [[noreturn]] std::array&lt;std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;, 3&gt;
+<span class="lineNum">     130 </span>            : Wedge3D::inverse(const std::array&lt;T, 3&gt;&amp; /*x*/) const noexcept {
+<span class="lineNum">     131 </span>            :   ERROR(&quot;Inverse map is unimplemented for Wedge3D&quot;);
+<span class="lineNum">     132 </span>            : }
+<span class="lineNum">     133 </span>            : // LCOV_EXCL_STOP
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     136 </span>            : Tensor&lt;std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;,
+<span class="lineNum">     137 </span>            :        tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<a name="138"><span class="lineNum">     138 </span>            :        index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,</a>
+<span class="lineNum">     139 </span>            :                   SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     140 </span><span class="lineCov">         89 : Wedge3D::jacobian(const std::array&lt;T, 3&gt;&amp; x) const noexcept {</span>
+<span class="lineNum">     141 </span>            :   using ReturnType = std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;;
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineCov">         89 :   const ReturnType&amp; xi = x[0];</span>
+<span class="lineNum">     144 </span><span class="lineCov">         89 :   const ReturnType&amp; eta = x[1];</span>
+<span class="lineNum">     145 </span><span class="lineCov">         89 :   const ReturnType&amp; zeta = x[2];</span>
+<span class="lineNum">     146 </span>            :   const double ratio_of_radii =
+<span class="lineNum">     147 </span><span class="lineCov">         89 :       radius_of_spherical_surface_ / radius_of_other_surface_;</span>
+<span class="lineNum">     148 </span>            :   const ReturnType x_equiangular_secant =
+<span class="lineNum">     149 </span><span class="lineCov">        101 :       make_with_value&lt;ReturnType&gt;(xi, 1.0) / cos(M_PI_4 * xi);</span>
+<span class="lineNum">     150 </span>            :   const ReturnType y_equiangular_secant =
+<span class="lineNum">     151 </span><span class="lineCov">        101 :       make_with_value&lt;ReturnType&gt;(xi, 1.0) / cos(M_PI_4 * eta);</span>
+<span class="lineNum">     152 </span><span class="lineCov">         97 :   const ReturnType x_equiangular_tangent = tan(M_PI_4 * xi);</span>
+<span class="lineNum">     153 </span><span class="lineCov">         97 :   const ReturnType y_equiangular_tangent = tan(M_PI_4 * eta);</span>
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span><span class="lineCov">         93 :   const ReturnType sy_square = square(y_equiangular_secant);</span>
+<span class="lineNum">     156 </span><span class="lineCov">         93 :   const ReturnType sx_square = square(x_equiangular_secant);</span>
+<span class="lineNum">     157 </span><span class="lineCov">          8 :   const ReturnType scaling_and_sphericity = M_PI *</span>
+<span class="lineNum">     158 </span><span class="lineCov">        109 :       (ratio_of_radii * (1 + zeta) + sphericity_of_other_surface_ * (1 - zeta));</span>
+<span class="lineNum">     159 </span>            :   const ReturnType denominator_dzeta =
+<span class="lineNum">     160 </span><span class="lineCov">         97 :       (2.0 * sqrt(sx_square + square(y_equiangular_tangent)));</span>
+<span class="lineNum">     161 </span><span class="lineCov">         93 :   const ReturnType denominator_other = pow&lt;3&gt;(denominator_dzeta);</span>
+<span class="lineNum">     162 </span><span class="lineCov">         97 :   const ReturnType nonsphericity = (-1.0 + sphericity_of_other_surface_) * 0.5 *</span>
+<span class="lineNum">     163 </span><span class="lineCov">         93 :                                    denominator_dzeta / sqrt(3.);</span>
+<span class="lineNum">     164 </span>            :   const ReturnType trigonometric_nonsphericity =
+<span class="lineNum">     165 </span><span class="lineCov">        101 :       nonsphericity * (-1.0 + zeta) *</span>
+<span class="lineNum">     166 </span><span class="lineCov">        202 :       (3 + cos(M_PI_2 * xi) + 2 * cos(M_PI_2 * eta) * square(sin(M_PI_4 * xi)));</span>
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            :   Tensor&lt;ReturnType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     169 </span>            :          index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     170 </span>            :                     SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     171 </span><span class="lineCov">         89 :       jacobian_matrix{};</span>
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span><span class="lineCov">         89 :   auto &amp;dx_dxi = jacobian_matrix.template get&lt;0, 0&gt;(),</span>
+<span class="lineNum">     174 </span><span class="lineCov">         89 :        &amp;dx_deta = jacobian_matrix.template get&lt;0, 1&gt;(),</span>
+<span class="lineNum">     175 </span><span class="lineCov">         89 :        &amp;dx_dzeta = jacobian_matrix.template get&lt;0, 2&gt;(),</span>
+<span class="lineNum">     176 </span><span class="lineCov">         89 :        &amp;dy_dxi = jacobian_matrix.template get&lt;1, 0&gt;(),</span>
+<span class="lineNum">     177 </span><span class="lineCov">         89 :        &amp;dy_deta = jacobian_matrix.template get&lt;1, 1&gt;(),</span>
+<span class="lineNum">     178 </span><span class="lineCov">         89 :        &amp;dy_dzeta = jacobian_matrix.template get&lt;1, 2&gt;(),</span>
+<span class="lineNum">     179 </span><span class="lineCov">         89 :        &amp;dz_dxi = jacobian_matrix.template get&lt;2, 0&gt;(),</span>
+<span class="lineNum">     180 </span><span class="lineCov">         89 :        &amp;dz_deta = jacobian_matrix.template get&lt;2, 1&gt;(),</span>
+<span class="lineNum">     181 </span><span class="lineCov">         89 :        &amp;dz_dzeta = jacobian_matrix.template get&lt;2, 2&gt;();</span>
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span><span class="lineCov">        267 :   dx_dxi = sy_square * sx_square *</span>
+<span class="lineNum">     184 </span><span class="lineCov">        182 :            (scaling_and_sphericity + trigonometric_nonsphericity) /</span>
+<span class="lineNum">     185 </span>            :            denominator_other;
+<span class="lineNum">     186 </span><span class="lineCov">        182 :   dx_deta = -scaling_and_sphericity * sy_square * y_equiangular_tangent *</span>
+<span class="lineNum">     187 </span><span class="lineCov">         89 :             x_equiangular_tangent / denominator_other;</span>
+<span class="lineNum">     188 </span><span class="lineCov">        267 :   dx_dzeta = (nonsphericity * xi +</span>
+<span class="lineNum">     189 </span><span class="lineCov">         97 :               (-sphericity_of_other_surface_ + ratio_of_radii) *</span>
+<span class="lineNum">     190 </span><span class="lineCov">         89 :                   x_equiangular_tangent) /</span>
+<span class="lineNum">     191 </span>            :              denominator_dzeta;
+<span class="lineNum">     192 </span><span class="lineCov">        182 :   dy_dxi = -scaling_and_sphericity * sx_square * y_equiangular_tangent *</span>
+<span class="lineNum">     193 </span><span class="lineCov">         89 :            x_equiangular_tangent / denominator_other;</span>
+<span class="lineNum">     194 </span><span class="lineCov">        267 :   dy_deta = sy_square * sx_square *</span>
+<span class="lineNum">     195 </span><span class="lineCov">        182 :             (scaling_and_sphericity + trigonometric_nonsphericity) /</span>
+<span class="lineNum">     196 </span>            :             denominator_other;
+<span class="lineNum">     197 </span><span class="lineCov">        267 :   dy_dzeta = (nonsphericity * eta +</span>
+<span class="lineNum">     198 </span><span class="lineCov">         97 :               (-sphericity_of_other_surface_ + ratio_of_radii) *</span>
+<span class="lineNum">     199 </span><span class="lineCov">         89 :                   y_equiangular_tangent) /</span>
+<span class="lineNum">     200 </span>            :              denominator_dzeta;
+<span class="lineNum">     201 </span><span class="lineCov">         93 :   dz_dxi = -scaling_and_sphericity * sx_square * x_equiangular_tangent /</span>
+<span class="lineNum">     202 </span>            :            denominator_other;
+<span class="lineNum">     203 </span><span class="lineCov">         93 :   dz_deta = -scaling_and_sphericity * sy_square * y_equiangular_tangent /</span>
+<span class="lineNum">     204 </span>            :             denominator_other;
+<span class="lineNum">     205 </span><span class="lineCov">         97 :   dz_dzeta = (nonsphericity - sphericity_of_other_surface_ + ratio_of_radii) /</span>
+<span class="lineNum">     206 </span>            :              denominator_dzeta;
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span>            :   // Implement Rotation:
+<span class="lineNum">     209 </span><span class="lineCov">         89 :   if (direction_of_wedge_ == Direction&lt;3&gt;::lower_zeta()) {</span>
+<span class="lineNum">     210 </span><span class="lineCov">          6 :     dz_dxi *= -1;</span>
+<span class="lineNum">     211 </span><span class="lineCov">          6 :     dz_deta *= -1;</span>
+<span class="lineNum">     212 </span><span class="lineCov">          6 :     dz_dzeta *= -1;</span>
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span><span class="lineCov">          6 :     dy_dxi *= -1;</span>
+<span class="lineNum">     215 </span><span class="lineCov">          6 :     dy_deta *= -1;</span>
+<span class="lineNum">     216 </span><span class="lineCov">          6 :     dy_dzeta *= -1;</span>
+<span class="lineNum">     217 </span>            :   }
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span><span class="lineCov">         89 :   if (direction_of_wedge_.axis() == Direction&lt;3&gt;::Axis::Eta) {</span>
+<span class="lineNum">     220 </span><span class="lineCov">         12 :     std::swap(dx_dxi, dy_dxi);</span>
+<span class="lineNum">     221 </span><span class="lineCov">         12 :     std::swap(dx_deta, dy_deta);</span>
+<span class="lineNum">     222 </span><span class="lineCov">         12 :     std::swap(dx_dzeta, dy_dzeta);</span>
+<span class="lineNum">     223 </span><span class="lineCov">         12 :     std::swap(dy_dxi, dz_dxi);</span>
+<span class="lineNum">     224 </span><span class="lineCov">         12 :     std::swap(dy_deta, dz_deta);</span>
+<span class="lineNum">     225 </span><span class="lineCov">         12 :     std::swap(dy_dzeta, dz_dzeta);</span>
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span><span class="lineCov">         12 :     if (direction_of_wedge_.side() == Side::Lower) {</span>
+<span class="lineNum">     228 </span><span class="lineCov">          6 :       dy_dxi *= -1;</span>
+<span class="lineNum">     229 </span><span class="lineCov">          6 :       dy_deta *= -1;</span>
+<span class="lineNum">     230 </span><span class="lineCov">          6 :       dy_dzeta *= -1;</span>
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span><span class="lineCov">          6 :       dz_dxi *= -1;</span>
+<span class="lineNum">     233 </span><span class="lineCov">          6 :       dz_deta *= -1;</span>
+<span class="lineNum">     234 </span><span class="lineCov">          6 :       dz_dzeta *= -1;</span>
+<span class="lineNum">     235 </span>            :     }
+<span class="lineNum">     236 </span>            :   }
+<span class="lineNum">     237 </span>            : 
+<span class="lineNum">     238 </span><span class="lineCov">         89 :   if (direction_of_wedge_.axis() == Direction&lt;3&gt;::Axis::Xi) {</span>
+<span class="lineNum">     239 </span><span class="lineCov">         12 :     std::swap(dx_dxi, dz_dxi);</span>
+<span class="lineNum">     240 </span><span class="lineCov">         12 :     std::swap(dx_deta, dz_deta);</span>
+<span class="lineNum">     241 </span><span class="lineCov">         12 :     std::swap(dx_dzeta, dz_dzeta);</span>
+<span class="lineNum">     242 </span><span class="lineCov">         12 :     std::swap(dz_dxi, dy_dxi);</span>
+<span class="lineNum">     243 </span><span class="lineCov">         12 :     std::swap(dz_deta, dy_deta);</span>
+<span class="lineNum">     244 </span><span class="lineCov">         12 :     std::swap(dz_dzeta, dy_dzeta);</span>
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span><span class="lineCov">         12 :     if (direction_of_wedge_.side() == Side::Lower) {</span>
+<span class="lineNum">     247 </span><span class="lineCov">          6 :       dx_dxi *= -1;</span>
+<span class="lineNum">     248 </span><span class="lineCov">          6 :       dx_deta *= -1;</span>
+<span class="lineNum">     249 </span><span class="lineCov">          6 :       dx_dzeta *= -1;</span>
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span><span class="lineCov">          6 :       dy_dxi *= -1;</span>
+<span class="lineNum">     252 </span><span class="lineCov">          6 :       dy_deta *= -1;</span>
+<span class="lineNum">     253 </span><span class="lineCov">          6 :       dy_dzeta *= -1;</span>
+<span class="lineNum">     254 </span>            :     }
+<span class="lineNum">     255 </span>            :   }
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span><span class="lineCov">         89 :   const double scaled_radius_of_other_surface = radius_of_other_surface_;</span>
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            :   // multiply jacobian_matrix by scaling factor to get jacobian.
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">         89 :   std::transform(jacobian_matrix.begin(), jacobian_matrix.end(),</span></a>
+<span class="lineNum">     261 </span>            :                  jacobian_matrix.begin(),
+<span class="lineNum">     262 </span><span class="lineCov">       1566 :                  [scaled_radius_of_other_surface](const T&amp; jacobian_element) {</span>
+<span class="lineNum">     263 </span><span class="lineCov">        801 :                    return jacobian_element * scaled_radius_of_other_surface;</span>
+<span class="lineNum">     264 </span><span class="lineCov">        801 :                  });</span>
+<span class="lineNum">     265 </span><span class="lineCov">         93 :   return jacobian_matrix;</span>
+<span class="lineNum">     266 </span>            : }
+<span class="lineNum">     267 </span>            : 
+<span class="lineNum">     268 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     269 </span>            : Tensor&lt;std::decay_t&lt;tt::remove_reference_wrapper_t&lt;T&gt;&gt;,
+<span class="lineNum">     270 </span>            :        tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<a name="271"><span class="lineNum">     271 </span>            :        index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,</a>
+<span class="lineNum">     272 </span>            :                   SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     273 </span><span class="lineCov">         37 : Wedge3D::inv_jacobian(const std::array&lt;T, 3&gt;&amp; xi) const noexcept {</span>
+<span class="lineNum">     274 </span><span class="lineCov">         37 :   return determinant_and_inverse(jacobian(xi)).second;</span>
+<a name="275"><span class="lineNum">     275 </span>            : }</a>
+<span class="lineNum">     276 </span>            : 
+<span class="lineNum">     277 </span><span class="lineCov">          6 : void Wedge3D::pup(PUP::er&amp; p) {</span>
+<span class="lineNum">     278 </span><span class="lineCov">          6 :   p | radius_of_other_surface_;</span>
+<span class="lineNum">     279 </span><span class="lineCov">          6 :   p | radius_of_spherical_surface_;</span>
+<span class="lineNum">     280 </span><span class="lineCov">          6 :   p | direction_of_wedge_;</span>
+<span class="lineNum">     281 </span><span class="lineCov">          6 :   p | sphericity_of_other_surface_;</span>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          6 : }</span></a>
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span><span class="lineCov">          2 : bool operator==(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept {</span>
+<span class="lineNum">     285 </span><span class="lineCov">          4 :   return lhs.radius_of_other_surface_ == rhs.radius_of_other_surface_ and</span>
+<span class="lineNum">     286 </span><span class="lineCov">          2 :          lhs.radius_of_spherical_surface_ ==</span>
+<span class="lineNum">     287 </span><span class="lineCov">          4 :              rhs.radius_of_spherical_surface_ and</span>
+<span class="lineNum">     288 </span><span class="lineCov">          6 :          lhs.direction_of_wedge_ == rhs.direction_of_wedge_ and</span>
+<span class="lineNum">     289 </span><span class="lineCov">          4 :          lhs.sphericity_of_other_surface_ == rhs.sphericity_of_other_surface_;</span>
+<a name="290"><span class="lineNum">     290 </span>            : }</a>
+<span class="lineNum">     291 </span>            : 
+<span class="lineNum">     292 </span><span class="lineCov">          1 : bool operator!=(const Wedge3D&amp; lhs, const Wedge3D&amp; rhs) noexcept {</span>
+<span class="lineNum">     293 </span><span class="lineCov">          1 :   return not(lhs == rhs);</span>
+<span class="lineNum">     294 </span>            : }
+<span class="lineNum">     295 </span>            : 
+<span class="lineNum">     296 </span>            : // Explicit instantiations
+<span class="lineNum">     297 </span>            : template std::array&lt;double, 3&gt; Wedge3D::operator()(
+<span class="lineNum">     298 </span>            :     const std::array&lt;std::reference_wrapper&lt;const double&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     299 </span>            :     noexcept;
+<span class="lineNum">     300 </span>            : template std::array&lt;double, 3&gt; Wedge3D::operator()(
+<span class="lineNum">     301 </span>            :     const std::array&lt;double, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     302 </span>            : template std::array&lt;DataVector, 3&gt; Wedge3D::operator()(
+<span class="lineNum">     303 </span>            :     const std::array&lt;std::reference_wrapper&lt;const DataVector&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     304 </span>            :     noexcept;
+<span class="lineNum">     305 </span>            : template std::array&lt;DataVector, 3&gt; Wedge3D::operator()(
+<span class="lineNum">     306 </span>            :     const std::array&lt;DataVector, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     307 </span>            : 
+<span class="lineNum">     308 </span>            : template std::array&lt;double, 3&gt; Wedge3D::inverse(
+<span class="lineNum">     309 </span>            :     const std::array&lt;std::reference_wrapper&lt;const double&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     310 </span>            :     noexcept;
+<span class="lineNum">     311 </span>            : template std::array&lt;double, 3&gt; Wedge3D::inverse(
+<span class="lineNum">     312 </span>            :     const std::array&lt;double, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     313 </span>            : template std::array&lt;DataVector, 3&gt; Wedge3D::inverse(
+<span class="lineNum">     314 </span>            :     const std::array&lt;std::reference_wrapper&lt;const DataVector&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     315 </span>            :     noexcept;
+<span class="lineNum">     316 </span>            : template std::array&lt;DataVector, 3&gt; Wedge3D::inverse(
+<span class="lineNum">     317 </span>            :     const std::array&lt;DataVector, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     318 </span>            : 
+<span class="lineNum">     319 </span>            : template Tensor&lt;double, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     320 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     321 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     322 </span>            : Wedge3D::jacobian(
+<span class="lineNum">     323 </span>            :     const std::array&lt;std::reference_wrapper&lt;const double&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     324 </span>            :     noexcept;
+<span class="lineNum">     325 </span>            : template Tensor&lt;double, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     326 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     327 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     328 </span>            : Wedge3D::jacobian(const std::array&lt;double, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     329 </span>            : template Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     330 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     331 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     332 </span>            : Wedge3D::jacobian(
+<span class="lineNum">     333 </span>            :     const std::array&lt;std::reference_wrapper&lt;const DataVector&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     334 </span>            :     noexcept;
+<span class="lineNum">     335 </span>            : template Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     336 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     337 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     338 </span>            : Wedge3D::jacobian(const std::array&lt;DataVector, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     339 </span>            : 
+<span class="lineNum">     340 </span>            : template Tensor&lt;double, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     341 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     342 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     343 </span>            : Wedge3D::inv_jacobian(
+<span class="lineNum">     344 </span>            :     const std::array&lt;std::reference_wrapper&lt;const double&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     345 </span>            :     noexcept;
+<span class="lineNum">     346 </span>            : template Tensor&lt;double, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     347 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     348 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     349 </span>            : Wedge3D::inv_jacobian(const std::array&lt;double, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     350 </span>            : template Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     351 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<span class="lineNum">     352 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;
+<span class="lineNum">     353 </span>            : Wedge3D::inv_jacobian(
+<span class="lineNum">     354 </span>            :     const std::array&lt;std::reference_wrapper&lt;const DataVector&gt;, 3&gt;&amp; /*xi*/) const
+<span class="lineNum">     355 </span>            :     noexcept;
+<span class="lineNum">     356 </span>            : template Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     357 </span>            :                 index_list&lt;SpatialIndex&lt;3, UpLo::Up, Frame::NoFrame&gt;,
+<a name="358"><span class="lineNum">     358 </span>            :                            SpatialIndex&lt;3, UpLo::Lo, Frame::NoFrame&gt;&gt;&gt;</a>
+<span class="lineNum">     359 </span>            : Wedge3D::inv_jacobian(const std::array&lt;DataVector, 3&gt;&amp; /*xi*/) const noexcept;
+<span class="lineNum">     360 </span><span class="lineCov">       1248 : }  // namespace CoordinateMaps</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

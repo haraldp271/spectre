@@ -1,0 +1,695 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js", "color.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['^^','^^'], ['\\(', '\\)']]}
+});
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classCoordinateMapBase-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__CoordinateMapsGroup.html">Coordinate Maps</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Abstract base class for <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a>.  
+ <a href="classCoordinateMapBase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="CoordinateMap_8hpp_source.html">CoordinateMap.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a30d37d71245f0d80bcce08b25c4c4029"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a30d37d71245f0d80bcce08b25c4c4029">WRAPPED_PUPable_abstract</a> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>)</td></tr>
+<tr class="separator:a30d37d71245f0d80bcce08b25c4c4029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283e2dd49b5cdc42bacfe57211032818"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a283e2dd49b5cdc42bacfe57211032818">CoordinateMapBase</a> ()=default</td></tr>
+<tr class="separator:a283e2dd49b5cdc42bacfe57211032818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad51def9c18edb9c5b95f7819471efdc5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#ad51def9c18edb9c5b95f7819471efdc5">CoordinateMapBase</a> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;)=default</td></tr>
+<tr class="separator:ad51def9c18edb9c5b95f7819471efdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e9ab5c056196a57bdadcb1a7c6ee8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#aa8e9ab5c056196a57bdadcb1a7c6ee8c">operator=</a> (const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;)=default</td></tr>
+<tr class="separator:aa8e9ab5c056196a57bdadcb1a7c6ee8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7c014ce2225878e8a14f311e89693f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a3c7c014ce2225878e8a14f311e89693f">CoordinateMapBase</a> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a3c7c014ce2225878e8a14f311e89693f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab87f831502526f20e52aae50963f7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a8ab87f831502526f20e52aae50963f7e">operator=</a> (<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a8ab87f831502526f20e52aae50963f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3242548aec939d07941ea809ac3b4f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#aa3242548aec939d07941ea809ac3b4f0">~CoordinateMapBase</a> () override=default</td></tr>
+<tr class="separator:aa3242548aec939d07941ea809ac3b4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b386d25e173836ea6ec4e9daec1c38a"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a8b386d25e173836ea6ec4e9daec1c38a">get_clone</a> () const =0</td></tr>
+<tr class="separator:a8b386d25e173836ea6ec4e9daec1c38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a9c505442b313688715a1c597d98b50fb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a9c505442b313688715a1c597d98b50fb">operator()</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:a9c505442b313688715a1c597d98b50fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the <code>Maps</code> to the point(s) <code>source_point</code>  <a href="#a9c505442b313688715a1c597d98b50fb">More...</a><br /></td></tr>
+<tr class="separator:a9c505442b313688715a1c597d98b50fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9477b826a4ac063a475aba5cbb2b4768"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, TargetFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a9477b826a4ac063a475aba5cbb2b4768">operator()</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:a9477b826a4ac063a475aba5cbb2b4768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the <code>Maps</code> to the point(s) <code>source_point</code>  <a href="#a9477b826a4ac063a475aba5cbb2b4768">More...</a><br /></td></tr>
+<tr class="separator:a9477b826a4ac063a475aba5cbb2b4768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad477ce13628b2624b8c3c7f15dda7231"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#ad477ce13628b2624b8c3c7f15dda7231">inverse</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, TargetFrame &gt; &amp;target_point) const =0</td></tr>
+<tr class="memdesc:ad477ce13628b2624b8c3c7f15dda7231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the inverse <code>Maps</code> to the point(s) <code>target_point</code>  <a href="#ad477ce13628b2624b8c3c7f15dda7231">More...</a><br /></td></tr>
+<tr class="separator:ad477ce13628b2624b8c3c7f15dda7231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e145f0f0f90f22d8e0902fbd143f81"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#af6e145f0f0f90f22d8e0902fbd143f81">inverse</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, TargetFrame &gt; &amp;target_point) const =0</td></tr>
+<tr class="memdesc:af6e145f0f0f90f22d8e0902fbd143f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the inverse <code>Maps</code> to the point(s) <code>target_point</code>  <a href="#af6e145f0f0f90f22d8e0902fbd143f81">More...</a><br /></td></tr>
+<tr class="separator:af6e145f0f0f90f22d8e0902fbd143f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aaf2f2f065c6753f387ced5a69678e634"><td class="memItemLeft" align="right" valign="top">virtual Tensor&lt; double, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, SourceFrame &gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, TargetFrame &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#aaf2f2f065c6753f387ced5a69678e634">inv_jacobian</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:aaf2f2f065c6753f387ced5a69678e634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code>  <a href="#aaf2f2f065c6753f387ced5a69678e634">More...</a><br /></td></tr>
+<tr class="separator:aaf2f2f065c6753f387ced5a69678e634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a866061bf91512418139261d631a4df81"><td class="memItemLeft" align="right" valign="top">virtual Tensor&lt; <a class="el" href="classDataVector.html">DataVector</a>, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, SourceFrame &gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, TargetFrame &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a866061bf91512418139261d631a4df81">inv_jacobian</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:a866061bf91512418139261d631a4df81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code>  <a href="#a866061bf91512418139261d631a4df81">More...</a><br /></td></tr>
+<tr class="separator:a866061bf91512418139261d631a4df81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a469ead21cebbdf0be27940f2e5e90d34"><td class="memItemLeft" align="right" valign="top">virtual Tensor&lt; double, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, TargetFrame &gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, SourceFrame &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a469ead21cebbdf0be27940f2e5e90d34">jacobian</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:a469ead21cebbdf0be27940f2e5e90d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code>  <a href="#a469ead21cebbdf0be27940f2e5e90d34">More...</a><br /></td></tr>
+<tr class="separator:a469ead21cebbdf0be27940f2e5e90d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3642356d39d5ca4653ad5d6d2bdce9"><td class="memItemLeft" align="right" valign="top">virtual Tensor&lt; <a class="el" href="classDataVector.html">DataVector</a>, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, TargetFrame &gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, SourceFrame &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCoordinateMapBase.html#a0a3642356d39d5ca4653ad5d6d2bdce9">jacobian</a> (const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;source_point) const =0</td></tr>
+<tr class="memdesc:a0a3642356d39d5ca4653ad5d6d2bdce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code>  <a href="#a0a3642356d39d5ca4653ad5d6d2bdce9">More...</a><br /></td></tr>
+<tr class="separator:a0a3642356d39d5ca4653ad5d6d2bdce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt;<br />
+class CoordinateMapBase&lt; SourceFrame, TargetFrame, Dim &gt;</h3>
+
+<p>Abstract base class for <a class="el" href="classCoordinateMap.html" title="A coordinate map or composition of coordinate maps. ">CoordinateMap</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a283e2dd49b5cdc42bacfe57211032818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a283e2dd49b5cdc42bacfe57211032818">&#9670;&nbsp;</a></span>CoordinateMapBase() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad51def9c18edb9c5b95f7819471efdc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad51def9c18edb9c5b95f7819471efdc5">&#9670;&nbsp;</a></span>CoordinateMapBase() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c7c014ce2225878e8a14f311e89693f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7c014ce2225878e8a14f311e89693f">&#9670;&nbsp;</a></span>CoordinateMapBase() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3242548aec939d07941ea809ac3b4f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3242548aec939d07941ea809ac3b4f0">&#9670;&nbsp;</a></span>~CoordinateMapBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::~<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8b386d25e173836ea6ec4e9daec1c38a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b386d25e173836ea6ec4e9daec1c38a">&#9670;&nbsp;</a></span>get_clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt;<a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt;SourceFrame, TargetFrame, Dim&gt; &gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::get_clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classCoordinateMap.html#a586ea27db7143654ec92e131efd1b104">CoordinateMap&lt; SourceFrame, TargetFrame, Maps &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aaf2f2f065c6753f387ced5a69678e634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf2f2f065c6753f387ced5a69678e634">&#9670;&nbsp;</a></span>inv_jacobian() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Tensor&lt;double, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, SourceFrame&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, TargetFrame&gt; &gt; &gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::inv_jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="a866061bf91512418139261d631a4df81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a866061bf91512418139261d631a4df81">&#9670;&nbsp;</a></span>inv_jacobian() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Tensor&lt;<a class="el" href="classDataVector.html">DataVector</a>, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, SourceFrame&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, TargetFrame&gt; &gt; &gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::inv_jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the inverse Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="ad477ce13628b2624b8c3c7f15dda7231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad477ce13628b2624b8c3c7f15dda7231">&#9670;&nbsp;</a></span>inverse() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt;double, Dim, SourceFrame&gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::inverse </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, TargetFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>target_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the inverse <code>Maps</code> to the point(s) <code>target_point</code> </p>
+
+</div>
+</div>
+<a id="af6e145f0f0f90f22d8e0902fbd143f81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e145f0f0f90f22d8e0902fbd143f81">&#9670;&nbsp;</a></span>inverse() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt;<a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame&gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::inverse </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, TargetFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>target_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the inverse <code>Maps</code> to the point(s) <code>target_point</code> </p>
+
+</div>
+</div>
+<a id="a469ead21cebbdf0be27940f2e5e90d34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469ead21cebbdf0be27940f2e5e90d34">&#9670;&nbsp;</a></span>jacobian() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Tensor&lt;double, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, TargetFrame&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, SourceFrame&gt; &gt; &gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="a0a3642356d39d5ca4653ad5d6d2bdce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3642356d39d5ca4653ad5d6d2bdce9">&#9670;&nbsp;</a></span>jacobian() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Tensor&lt;<a class="el" href="classDataVector.html">DataVector</a>, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, TargetFrame&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;Dim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, SourceFrame&gt; &gt; &gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the Jacobian of the <code>Maps</code> at the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="a9c505442b313688715a1c597d98b50fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c505442b313688715a1c597d98b50fb">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt;double, Dim, TargetFrame&gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; double, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the <code>Maps</code> to the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="a9477b826a4ac063a475aba5cbb2b4768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9477b826a4ac063a475aba5cbb2b4768">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt;<a class="el" href="classDataVector.html">DataVector</a>, Dim, TargetFrame&gt; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacetnsr.html#ae4ca53da15772fdb98d33933d2670a3a">tnsr::I</a>&lt; <a class="el" href="classDataVector.html">DataVector</a>, Dim, SourceFrame &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source_point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the <code>Maps</code> to the point(s) <code>source_point</code> </p>
+
+</div>
+</div>
+<a id="aa8e9ab5c056196a57bdadcb1a7c6ee8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e9ab5c056196a57bdadcb1a7c6ee8c">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&amp; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ab87f831502526f20e52aae50963f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ab87f831502526f20e52aae50963f7e">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&amp; <a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30d37d71245f0d80bcce08b25c4c4029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30d37d71245f0d80bcce08b25c4c4029">&#9670;&nbsp;</a></span>WRAPPED_PUPable_abstract()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SourceFrame, typename TargetFrame, size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;::WRAPPED_PUPable_abstract </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCoordinateMapBase.html">CoordinateMapBase</a>&lt; SourceFrame, TargetFrame, Dim &gt;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/Domain/CoordinateMaps/<a class="el" href="CoordinateMap_8hpp_source.html">CoordinateMap.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

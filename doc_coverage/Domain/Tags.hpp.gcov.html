@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 270fd52d4526cb096cc9683cc2fc34a30d9efd0f - Domain/Tags.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - Tags.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/270fd52d4526cb096cc9683cc2fc34a30d9efd0f">270fd52d4526cb096cc9683cc2fc34a30d9efd0f</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntryLo">30.8 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-11-16 05:34:29</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines tags related to domain quantities
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      10 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &quot;DataStructures/DataBoxTag.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;DataStructures/Index.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Domain/CoordinateMaps/CoordinateMap.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Domain/Direction.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Domain/Element.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Domain/GridNormal.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace Tags {
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /// \ingroup DataBoxTags
+<span class="lineNum">      22 </span>            : /// \ingroup ComputationalDomain
+<span class="lineNum">      23 </span>            : /// The ::Element associated with the DataBox
+<span class="lineNum">      24 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      25 </span><span class="lineCov">          1 : struct Element : db::DataBoxTag {</span>
+<span class="lineNum">      26 </span><span class="lineNoCov">          0 :   static constexpr db::DataBoxString_t label = &quot;Element&quot;;</span>
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :   using type = ::Element&lt;VolumeDim&gt;;</span>
+<span class="lineNum">      28 </span>            : };
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : /// \ingroup DataBoxTags
+<span class="lineNum">      31 </span>            : /// \ingroup ComputationalDomain
+<span class="lineNum">      32 </span>            : /// The extents of DataVectors in the DataBox
+<span class="lineNum">      33 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      34 </span><span class="lineCov">          1 : struct Extents : db::DataBoxTag {</span>
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 :   static constexpr db::DataBoxString_t label = &quot;Extents&quot;;</span>
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :   using type = ::Index&lt;VolumeDim&gt;;</span>
+<span class="lineNum">      37 </span>            : };
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : /// \ingroup DataBoxTags
+<span class="lineNum">      40 </span>            : /// \ingroup ComputationalDomain
+<span class="lineNum">      41 </span>            : /// The coordinate map from logical to grid coordinate
+<span class="lineNum">      42 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      43 </span><span class="lineCov">          1 : struct ElementMap : db::DataBoxTag {</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   static constexpr db::DataBoxString_t label = &quot;ElementMap&quot;;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   using type = std::unique_ptr&lt;::CoordinateMapBase&lt;Frame::Logical, Frame::Grid,</span>
+<span class="lineNum">      46 </span>            :                                                    VolumeDim&gt;&gt;;
+<span class="lineNum">      47 </span>            : };
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : namespace detail {
+<span class="lineNum">      50 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      51 </span>            : auto make_unnormalized_grid_normals(
+<span class="lineNum">      52 </span>            :     const Index&lt;VolumeDim&gt;&amp; extents,
+<span class="lineNum">      53 </span>            :     const std::unique_ptr&lt;CoordinateMapBase&lt;Frame::Logical, Frame::Grid,
+<span class="lineNum">      54 </span>            :                                             VolumeDim&gt;&gt;&amp; map) noexcept {
+<span class="lineNum">      55 </span>            :   std::unordered_map&lt;Direction&lt;VolumeDim&gt;,
+<span class="lineNum">      56 </span>            :                      tnsr::i&lt;DataVector, VolumeDim, Frame::Grid&gt;&gt;
+<span class="lineNum">      57 </span>            :       result;
+<span class="lineNum">      58 </span>            :   for (const auto&amp; d : Direction&lt;VolumeDim&gt;::all_directions()) {
+<span class="lineNum">      59 </span>            :     result.emplace(d, unnormalized_grid_normal(
+<span class="lineNum">      60 </span>            :                           extents.slice_away(d.dimension()), *map, d));
+<span class="lineNum">      61 </span>            :   }
+<span class="lineNum">      62 </span>            :   return result;
+<span class="lineNum">      63 </span>            : }
+<span class="lineNum">      64 </span>            : }  // namespace detail
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            : /// \ingroup DataBoxTags
+<span class="lineNum">      67 </span>            : /// \ingroup ComputationalDomain
+<span class="lineNum">      68 </span>            : /// The unnormalized grid normal one form on each side
+<span class="lineNum">      69 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      70 </span><span class="lineCov">          1 : struct UnnormalizedGridNormal : db::ComputeItemTag {</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   static constexpr db::DataBoxString_t label = &quot;UnnormalizedGridNormal&quot;;</span>
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   static constexpr auto function =</span>
+<span class="lineNum">      73 </span>            :       detail::make_unnormalized_grid_normals&lt;VolumeDim&gt;;
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :   using argument_tags = tmpl::list&lt;Extents&lt;VolumeDim&gt;, ElementMap&lt;VolumeDim&gt;&gt;;</span>
+<span class="lineNum">      75 </span>            : };
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : }  // namespace Tags
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

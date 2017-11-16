@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 270fd52d4526cb096cc9683cc2fc34a30d9efd0f - Domain/Orientation.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - Orientation.cpp<span style="font-size: 80%;"> (source / <a href="Orientation.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/270fd52d4526cb096cc9683cc2fc34a30d9efd0f">270fd52d4526cb096cc9683cc2fc34a30d9efd0f</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">45</td>
+            <td class="headerCovTableEntry">45</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-11-16 05:33:43</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/Orientation.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #include &quot;Domain/SegmentId.hpp&quot;
+<a name="9"><span class="lineNum">       9 </span>            : </a>
+<span class="lineNum">      10 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      11 </span><span class="lineCov">         51 : Orientation&lt;VolumeDim&gt;::Orientation() {</span>
+<span class="lineNum">      12 </span><span class="lineCov">        156 :   for (size_t j = 0; j &lt; VolumeDim; j++) {</span>
+<span class="lineNum">      13 </span><span class="lineCov">        210 :     gsl::at(mapped_directions_, j) = Direction&lt;VolumeDim&gt;(j, Side::Upper);</span>
+<span class="lineNum">      14 </span>            :   }
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         51 : }</span></a>
+<span class="lineNum">      16 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      17 </span><span class="lineCov">         17 : Orientation&lt;VolumeDim&gt;::Orientation(</span>
+<span class="lineNum">      18 </span>            :     std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt; mapped_directions)
+<span class="lineNum">      19 </span><span class="lineCov">         17 :     : mapped_directions_(std::move(mapped_directions)) {</span>
+<span class="lineNum">      20 </span><span class="lineCov">         55 :   for (size_t j = 0; j &lt; VolumeDim; j++) {</span>
+<span class="lineNum">      21 </span><span class="lineCov">        122 :     if (gsl::at(mapped_directions_, j).dimension() != j or</span>
+<span class="lineNum">      22 </span><span class="lineCov">         50 :         gsl::at(mapped_directions_, j).side() != Side::Upper) {</span>
+<span class="lineNum">      23 </span><span class="lineCov">         21 :       is_aligned_ = false;</span>
+<span class="lineNum">      24 </span>            :     }
+<span class="lineNum">      25 </span>            :   }
+<span class="lineNum">      26 </span><span class="lineCov">         17 : }</span>
+<a name="27"><span class="lineNum">      27 </span>            : </a>
+<span class="lineNum">      28 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      29 </span><span class="lineCov">        383 : Orientation&lt;VolumeDim&gt;::Orientation(</span>
+<span class="lineNum">      30 </span>            :     const std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&amp; directions_in_host,
+<span class="lineNum">      31 </span><span class="lineCov">        383 :     const std::array&lt;Direction&lt;VolumeDim&gt;, VolumeDim&gt;&amp; directions_in_neighbor) {</span>
+<span class="lineNum">      32 </span><span class="lineCov">       1448 :   for (size_t j = 0; j &lt; VolumeDim; j++) {</span>
+<span class="lineNum">      33 </span><span class="lineCov">       4260 :     gsl::at(mapped_directions_, gsl::at(directions_in_host, j).dimension()) =</span>
+<span class="lineNum">      34 </span><span class="lineCov">       1065 :         (gsl::at(directions_in_host, j).side() == Side::Upper</span>
+<span class="lineNum">      35 </span><span class="lineCov">        873 :              ? gsl::at(directions_in_neighbor, j)</span>
+<span class="lineNum">      36 </span><span class="lineCov">        192 :              : gsl::at(directions_in_neighbor, j).opposite());</span>
+<span class="lineNum">      37 </span><span class="lineCov">       2130 :     if (gsl::at(directions_in_host, j) != gsl::at(directions_in_neighbor, j)) {</span>
+<span class="lineNum">      38 </span><span class="lineCov">        789 :       is_aligned_ = false;</span>
+<span class="lineNum">      39 </span>            :     }
+<span class="lineNum">      40 </span>            :   }
+<span class="lineNum">      41 </span><span class="lineCov">        383 : }</span>
+<a name="42"><span class="lineNum">      42 </span>            : </a>
+<span class="lineNum">      43 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      44 </span><span class="lineCov">         10 : std::array&lt;SegmentId, VolumeDim&gt; Orientation&lt;VolumeDim&gt;::mapped(</span>
+<span class="lineNum">      45 </span>            :     const std::array&lt;SegmentId, VolumeDim&gt;&amp; segmentIds) const {
+<span class="lineNum">      46 </span><span class="lineCov">         10 :   std::array&lt;SegmentId, VolumeDim&gt; result = segmentIds;</span>
+<span class="lineNum">      47 </span><span class="lineCov">         29 :   for (size_t d = 0; d &lt; VolumeDim; d++) {</span>
+<span class="lineNum">      48 </span><span class="lineCov">         95 :     gsl::at(result, gsl::at(mapped_directions_, d).dimension()) =</span>
+<span class="lineNum">      49 </span><span class="lineCov">         38 :         gsl::at(mapped_directions_, d).side() == Side::Upper</span>
+<span class="lineNum">      50 </span><span class="lineCov">          9 :             ? gsl::at(segmentIds, d)</span>
+<span class="lineNum">      51 </span><span class="lineCov">         10 :             : gsl::at(segmentIds, d).id_if_flipped();</span>
+<span class="lineNum">      52 </span>            :   }
+<span class="lineNum">      53 </span><span class="lineCov">         10 :   return result;</span>
+<span class="lineNum">      54 </span>            : }
+<a name="55"><span class="lineNum">      55 </span>            : </a>
+<span class="lineNum">      56 </span>            : template &lt;size_t VolumeDim&gt;
+<span class="lineNum">      57 </span><span class="lineCov">         45 : void Orientation&lt;VolumeDim&gt;::pup(PUP::er&amp; p) {</span>
+<span class="lineNum">      58 </span><span class="lineCov">         45 :   p | mapped_directions_;</span>
+<span class="lineNum">      59 </span><span class="lineCov">         45 :   p | is_aligned_;</span>
+<span class="lineNum">      60 </span><span class="lineCov">         45 : }</span>
+<a name="61"><span class="lineNum">      61 </span>            : </a>
+<span class="lineNum">      62 </span>            : template &lt;&gt;
+<span class="lineNum">      63 </span><span class="lineCov">          9 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Orientation&lt;1&gt;&amp; orientation) {</span>
+<span class="lineNum">      64 </span><span class="lineCov">          9 :   os &lt;&lt; &quot;(&quot; &lt;&lt; orientation.mapped(Direction&lt;1&gt;::upper_xi()) &lt;&lt; &quot;)&quot;;</span>
+<span class="lineNum">      65 </span><span class="lineCov">          9 :   return os;</span>
+<span class="lineNum">      66 </span>            : }
+<a name="67"><span class="lineNum">      67 </span>            : </a>
+<span class="lineNum">      68 </span>            : template &lt;&gt;
+<span class="lineNum">      69 </span><span class="lineCov">          9 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Orientation&lt;2&gt;&amp; orientation) {</span>
+<span class="lineNum">      70 </span><span class="lineCov">         18 :   os &lt;&lt; &quot;(&quot; &lt;&lt; orientation.mapped(Direction&lt;2&gt;::upper_xi()) &lt;&lt; &quot;, &quot;</span>
+<span class="lineNum">      71 </span><span class="lineCov">         27 :      &lt;&lt; orientation.mapped(Direction&lt;2&gt;::upper_eta()) &lt;&lt; &quot;)&quot;;</span>
+<span class="lineNum">      72 </span><span class="lineCov">          9 :   return os;</span>
+<span class="lineNum">      73 </span>            : }
+<a name="74"><span class="lineNum">      74 </span>            : </a>
+<span class="lineNum">      75 </span>            : template &lt;&gt;
+<span class="lineNum">      76 </span><span class="lineCov">         11 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Orientation&lt;3&gt;&amp; orientation) {</span>
+<span class="lineNum">      77 </span><span class="lineCov">         22 :   os &lt;&lt; &quot;(&quot; &lt;&lt; orientation.mapped(Direction&lt;3&gt;::upper_xi()) &lt;&lt; &quot;, &quot;</span>
+<span class="lineNum">      78 </span><span class="lineCov">         33 :      &lt;&lt; orientation.mapped(Direction&lt;3&gt;::upper_eta()) &lt;&lt; &quot;, &quot;</span>
+<span class="lineNum">      79 </span><span class="lineCov">         33 :      &lt;&lt; orientation.mapped(Direction&lt;3&gt;::upper_zeta()) &lt;&lt; &quot;)&quot;;</span>
+<span class="lineNum">      80 </span><span class="lineCov">         11 :   return os;</span>
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : template class Orientation&lt;1&gt;;
+<span class="lineNum">      84 </span>            : template class Orientation&lt;2&gt;;
+<span class="lineNum">      85 </span>            : template class Orientation&lt;3&gt;;
+<span class="lineNum">      86 </span>            : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
